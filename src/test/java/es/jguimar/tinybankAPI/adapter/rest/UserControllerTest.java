@@ -1,8 +1,9 @@
 package es.jguimar.tinybankAPI.adapter.rest;
 
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
+import es.jguimar.tinybankAPI.adapter.rest.tranform.UserMapperImpl;
 import es.jguimar.tinybankAPI.application.service.CreateUserService;
+import es.jguimar.tinybankAPI.domain.model.User;
 import es.jguimar.tinybankAPI.infrastructure.exception.ResourceExistsException;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +31,17 @@ public class UserControllerTest {
 
     @Before
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService, new UserMapperImpl())).build();
     }
 
     @Test
     public void createNewUser_shouldReturnOk() throws Exception {
         // Given
         given(userService.create(any()))
-                .willReturn(UserResponseDto.builder().id("abc1234").build());
+                .willReturn(User.builder().id("abc1234").build());
+
+        given(userService.create(any()))
+                .willReturn(User.builder().id("abc1234").build());
 
         // When
         final ResultActions result = mockMvc.perform(
@@ -75,5 +79,23 @@ public class UserControllerTest {
         result.andExpect(status().isConflict());
     }
 
-    //TODO: More test cases
+    @Test
+    public void createNewUserWrongInput_shouldReturnKO() throws Exception {
+
+        // Given
+        given(userService.create(any()))
+                .willThrow(new ResourceExistsException());
+
+        // When
+        final ResultActions result = mockMvc.perform(
+                post("/user/")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "  \"password\": \"extremelySecurePassword\"\n" +
+                                "}"));
+
+        // Then
+        result.andExpect(status().isBadRequest());
+    }
 }

@@ -2,6 +2,7 @@ package es.jguimar.tinybankAPI.adapter.rest;
 
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
+import es.jguimar.tinybankAPI.adapter.rest.tranform.UserMapper;
 import es.jguimar.tinybankAPI.application.port.inbound.UserWeb;
 import es.jguimar.tinybankAPI.application.service.CreateUserService;
 import es.jguimar.tinybankAPI.infrastructure.exception.ResourceExistsException;
@@ -21,10 +22,13 @@ public class UserController implements UserWeb {
 
     private final CreateUserService createUserService;
 
+    private final UserMapper userMapper;
+
     @Override
     public UserResponseDto userPost(@Valid UserRequestDto body) {
         try {
-            return createUserService.create(body);
+            return userMapper.toUserResponseDto(
+                    createUserService.create(userMapper.toUser(body)));
         } catch (ResourceExistsException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }

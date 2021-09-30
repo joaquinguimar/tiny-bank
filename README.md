@@ -1,13 +1,23 @@
-# Tiny - bank
+# Tiny - Bank
 
-Example code
+Código de ejemplo siguiendo arquitectura hexagonal.
 
-## Instructions
+API Rest para simular un pequeño banco:
 
-Project by default run with embedded mongo with 'dev' spring profile. With 'local' profile the project run with the database mongodb defined in porperties yml.
+- Registro usuario
+- Creación de cuenta (wallet)
+- Realización de depósito de dinero
+- Visualización de cuenta (wallet) --> Balance y movimientos
+- Transferencia de una cuenta A a una cuenta B
 
-## Requirements
+## Instrucciones
 
-Swagger documentation:
+Por defecto el proyecto, con el spring profile 'dev' corre sobre una base de datos mongo embebida. Este perfil es el seleccionado por defecto.
+Con el spring profile 'local' la aplicación usara las propiedades del yml para conectarse a una bbdd mongo externa.
+
+
+## Documentación
+
+Documentación Swagger:
 http://localhost:8080/swagger-ui/html
 

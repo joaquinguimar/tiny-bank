@@ -1,8 +1,5 @@
 package es.jguimar.tinybankAPI.application.usecase;
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
-import es.jguimar.tinybankAPI.adapter.rest.tranform.UserMapper;
 import es.jguimar.tinybankAPI.application.port.inbound.UserReadRepository;
 import es.jguimar.tinybankAPI.application.port.outbound.UserWriteRepository;
 import es.jguimar.tinybankAPI.application.service.CreateUserService;
@@ -34,17 +31,14 @@ public class CreateUserUseCaseTest {
     private UserWriteRepository userWriteRepository;
 
     @Mock
-    private UserMapper userMapper;
-
-    @Mock
     private PasswordEncoder passwordEncoder;
 
     private CreateUserUseCase createUserUserCase;
 
     @Before
     public void setup() {
-        createUserUserCase = new CreateUserService(userReadRepository, userWriteRepository,
-                userMapper, passwordEncoder);
+        createUserUserCase = new CreateUserService(userReadRepository,
+                userWriteRepository, passwordEncoder);
     }
 
     @Test
@@ -59,20 +53,15 @@ public class CreateUserUseCaseTest {
 
         given(passwordEncoder.encode(any())).willReturn("passenco1234");
 
-        given(userMapper.toUserResponseDto(any()))
-                .willReturn(UserResponseDto.builder().id("abc1234").build());
-
-
         // When
-        UserResponseDto userRequestDto = createUserUserCase.create(UserRequestDto.builder()
+        User user = createUserUserCase.create(User.builder()
                 .name("abc1234").password("pass1234").build());
 
         // Then
         verify(userReadRepository, times(1)).findByName(eq("abc1234"));
         verify(userWriteRepository, times(1)).save(any());
         verify(passwordEncoder, times(1)).encode(eq("pass1234"));
-        verify(userMapper, times(1)).toUserResponseDto(any());
-        assertThat(userRequestDto.getId()).isEqualTo("abc1234");
+        assertThat(user.getId()).isEqualTo("abc1234");
     }
 
     @Test
@@ -84,14 +73,12 @@ public class CreateUserUseCaseTest {
 
         // When
         Exception exception = assertThrows(ResourceExistsException.class, () -> {
-            createUserUserCase.create(UserRequestDto.builder().name("abc1234").build());
+            createUserUserCase.create(User.builder().name("abc1234").build());
          });
 
         // Then
         verify(userReadRepository, times(1)).findByName(eq("abc1234"));
         assertThat(exception.getMessage()).isNull();
     }
-
-    //TODO: End up test cases
 
 }

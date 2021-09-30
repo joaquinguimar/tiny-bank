@@ -35,9 +35,9 @@ public class UserRepositoryTest {
     // when
     mongoTemplate.save(objectToSave, "user");
 
-    Optional<User> safebox = userMongoRepository.findByName(NAME_SAVED);
+    Optional<User> user = userMongoRepository.findByName(NAME_SAVED);
 
     // then
-    assertThat(safebox.get().getName()).isEqualTo(NAME_SAVED);
+    assertThat(user.get().getName()).isEqualTo(NAME_SAVED);
   }
 }

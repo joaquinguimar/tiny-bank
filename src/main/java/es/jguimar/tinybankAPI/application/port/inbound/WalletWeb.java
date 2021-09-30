@@ -67,7 +67,7 @@ public interface WalletWeb {
     WalletResponseDto walletGet(@Parameter(in = ParameterIn.PATH, description = "Wallet id", required=true, schema=@Schema())
                                    @PathVariable("id") String id);
 
-    @Operation(summary = "Creates a new wallet", description = "Creates a new wallet . ", tags={  })
+    @Operation(summary = "Make a money transfer between", description = "Make a money transfer between . ", tags={  })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Money correctly tranfered", content = @Content(mediaType = "application/json", schema = @Schema(implementation = WalletResponseDto.class))),
 

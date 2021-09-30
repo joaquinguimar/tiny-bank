@@ -1,11 +1,16 @@
 package es.jguimar.tinybankAPI.application.usecase;
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
+import es.jguimar.tinybankAPI.domain.model.User;
 import es.jguimar.tinybankAPI.infrastructure.exception.ResourceExistsException;
 
 public interface CreateUserUseCase {
 
-     UserResponseDto create(UserRequestDto user) throws ResourceExistsException;
+     /**
+      * Creates a new user based on a non-empty name and a password.
+      * @param user - Object with data user
+      * @return New user created
+      * @throws ResourceExistsException
+      */
+     User create(User user) throws ResourceExistsException;
 
 }
