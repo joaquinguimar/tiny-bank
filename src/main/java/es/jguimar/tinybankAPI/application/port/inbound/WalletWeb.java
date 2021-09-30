@@ -1,6 +1,9 @@
 package es.jguimar.tinybankAPI.application.port.inbound;
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.*;
+import es.jguimar.tinybankAPI.adapter.rest.dto.MoneyRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.TransferRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.WalletRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.WalletResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

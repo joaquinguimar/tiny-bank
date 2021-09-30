@@ -4,10 +4,11 @@ import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.WalletResponseDto;
 import es.jguimar.tinybankAPI.domain.model.User;
 import es.jguimar.tinybankAPI.domain.model.Wallet;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.processing.Generated;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.processing.Generated;
-import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",

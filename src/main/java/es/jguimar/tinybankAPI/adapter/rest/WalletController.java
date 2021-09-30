@@ -1,13 +1,12 @@
 package es.jguimar.tinybankAPI.adapter.rest;
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.*;
+import es.jguimar.tinybankAPI.adapter.rest.dto.MoneyRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.TransferRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.WalletRequestDto;
+import es.jguimar.tinybankAPI.adapter.rest.dto.WalletResponseDto;
 import es.jguimar.tinybankAPI.adapter.rest.tranform.WalletMapper;
-import es.jguimar.tinybankAPI.application.port.inbound.UserWeb;
 import es.jguimar.tinybankAPI.application.port.inbound.WalletWeb;
-import es.jguimar.tinybankAPI.application.service.CreateUserService;
 import es.jguimar.tinybankAPI.application.service.WalletService;
-import es.jguimar.tinybankAPI.domain.model.Wallet;
-import es.jguimar.tinybankAPI.infrastructure.exception.ResourceExistsException;
 import es.jguimar.tinybankAPI.infrastructure.exception.ResourceNotFoundException;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

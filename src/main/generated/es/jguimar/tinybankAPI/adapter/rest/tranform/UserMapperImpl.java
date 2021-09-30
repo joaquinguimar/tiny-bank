@@ -3,8 +3,9 @@ package es.jguimar.tinybankAPI.adapter.rest.tranform;
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
 import es.jguimar.tinybankAPI.domain.model.User;
-import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",

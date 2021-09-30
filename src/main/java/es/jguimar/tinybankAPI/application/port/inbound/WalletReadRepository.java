@@ -1,6 +1,5 @@
 package es.jguimar.tinybankAPI.application.port.inbound;
 
-import es.jguimar.tinybankAPI.domain.model.User;
 import es.jguimar.tinybankAPI.domain.model.Wallet;
 
 import java.util.Optional;

@@ -1,6 +1,5 @@
 package es.jguimar.tinybankAPI.adapter.rest.tranform;
 
-import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.WalletResponseDto;
 import es.jguimar.tinybankAPI.domain.model.User;

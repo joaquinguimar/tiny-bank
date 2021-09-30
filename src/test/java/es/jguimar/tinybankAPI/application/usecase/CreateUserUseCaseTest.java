@@ -2,10 +2,10 @@ package es.jguimar.tinybankAPI.application.usecase;
 
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserRequestDto;
 import es.jguimar.tinybankAPI.adapter.rest.dto.UserResponseDto;
+import es.jguimar.tinybankAPI.adapter.rest.tranform.UserMapper;
 import es.jguimar.tinybankAPI.application.port.inbound.UserReadRepository;
 import es.jguimar.tinybankAPI.application.port.outbound.UserWriteRepository;
 import es.jguimar.tinybankAPI.application.service.CreateUserService;
-import es.jguimar.tinybankAPI.application.usecase.CreateUserUseCase;
 import es.jguimar.tinybankAPI.domain.model.User;
 import es.jguimar.tinybankAPI.infrastructure.exception.ResourceExistsException;
 import org.junit.Before;
@@ -14,18 +14,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
-import es.jguimar.tinybankAPI.adapter.rest.tranform.UserMapper;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.AdditionalMatchers.eq;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(SpringRunner.class)
